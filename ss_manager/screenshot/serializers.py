@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from screenshot.models import Screenshot
 from image.models import Image
+from image.serializers import ImageSerializer
 
 
 class ScreenshotSerializer(serializers.Serializer):
@@ -12,7 +13,8 @@ class ScreenshotSerializer(serializers.Serializer):
 
     title = serializers.CharField(allow_blank=True, max_length=120)
     description = serializers.CharField(allow_blank=True)
-    image = serializers.PrimaryKeyRelatedField(queryset=Image.objects.all())
+    image = serializers.SlugRelatedField(
+        slug_field="slug", queryset=Image.objects.all())
 
     def create(self, validatedData):
         return Screenshot.objects.create(**validatedData)

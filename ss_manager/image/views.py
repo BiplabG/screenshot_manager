@@ -30,20 +30,20 @@ class ImageList(APIView):
 
 
 class ImageDetail(APIView):
-    def get_object(self, pk):
+    def get_object(self, slug):
         try:
-            image = Image.objects.get(pk=pk)
+            image = Image.objects.get(slug=slug)
             return image
         except Image.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def get(self, request, pk, format=None):
-        image = self.get_object(pk)
+    def get(self, request, slug, format=None):
+        image = self.get_object(slug)
         serializer = ImageSerializer(image)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        image = self.get_object(pk)
+    def put(self, request, slug, format=None):
+        image = self.get_object(slug)
         serializer = ImageSerializer(image, data=request.data)
         if serializer.is_valid():
             if request.data.get("image"):
@@ -52,8 +52,8 @@ class ImageDetail(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        image = self.get_object(pk)
+    def delete(self, request, slug, format=None):
+        image = self.get_object(slug)
         image.delete()
         image.image.delete(save=False)
         return Response(status=status.HTTP_204_NO_CONTENT)

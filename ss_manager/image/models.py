@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 # Create your models here.
@@ -12,5 +13,6 @@ class Image(models.Model):
     height = models.PositiveIntegerField(editable=False)
     width = models.PositiveIntegerField(editable=False)
     alt_text = models.CharField(blank=True, max_length=120)
+    slug = models.UUIDField(editable=False, default=uuid.uuid4, unique=True)
 
     # TODO: Authenticate and authorize image access.

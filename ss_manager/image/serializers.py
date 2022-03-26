@@ -9,6 +9,7 @@ class ImageSerializer(serializers.Serializer):
     created_at = serializers.DateTimeField(read_only=True)
     height = serializers.IntegerField(read_only=True)
     width = serializers.IntegerField(read_only=True)
+    slug = serializers.CharField(read_only=True)
 
     image = serializers.ImageField(use_url=False, required=False)
     alt_text = serializers.CharField(
