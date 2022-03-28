@@ -15,8 +15,10 @@ class ScreenshotSerializer(serializers.Serializer):
     description = serializers.CharField(allow_blank=True)
     image = serializers.SlugRelatedField(
         slug_field="slug", queryset=Image.objects.all())
+    user = serializers.ReadOnlyField(source='user.username')
 
     def create(self, validatedData):
+        print(validatedData)
         return Screenshot.objects.create(**validatedData)
 
     def update(self, instance, validatedData):

@@ -14,5 +14,8 @@ class Screenshot(models.Model):
     is_edited = models.BooleanField(default=False, editable=False)
     is_archived = models.BooleanField(default=False, editable=False)
 
+    user = models.ForeignKey(
+        "auth.User", related_name="screenshots", on_delete=models.CASCADE)
+
     class Meta:
         ordering = ["created_at"]
