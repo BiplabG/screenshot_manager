@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+media
+uploads
+migrations
+otp_auth_old

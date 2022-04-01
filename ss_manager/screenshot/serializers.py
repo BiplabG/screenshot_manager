@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from screenshot.models import Screenshot
 from image.models import Image
-from image.serializers import ImageSerializer
 
 
 class ScreenshotSerializer(serializers.Serializer):

@@ -15,7 +15,7 @@ class Screenshot(models.Model):
     is_archived = models.BooleanField(default=False, editable=False)
 
     user = models.ForeignKey(
-        "auth.User", related_name="screenshots", on_delete=models.CASCADE)
+        "otp_auth.User", related_name="screenshots", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["created_at"]
